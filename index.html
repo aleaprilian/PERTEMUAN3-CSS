@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran IT Club</title>
+  <!-- Menghubungkan file HTML dengan file CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pembungkus utama (Card) -->
+  <div class="form-card">
+    <h2>Daftar IT Club</h2>
+    <p class="subtitle">Isi data diri kamu untuk bergabung bersama kami!</p>
+
+    <form action="#" method="POST">
+      
+      <!-- Input Teks: Nama Lengkap -->
+      <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+      </div>
+
+      <!-- Input Email -->
+      <div class="form-group">
+        <label for="email">Alamat Email</label>
+        <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+      </div>
+
+      <!-- Dropdown (Select): Pilihan Divisi -->
+      <div class="form-group">
+        <label for="divisi">Pilih Divisi</label>
+        <select id="divisi" name="divisi" required>
+          <option value="">-- Pilih Divisi --</option>
+          <option value="web">Web Development</option>
+          <option value="design">UI/UX Design</option>
+          <option value="game">Game Development</option>
+        </select>
+      </div>
+
+      <!-- Radio Button: Tingkat Pengalaman -->
+      <div class="form-group">
+        <label>Tingkat Pengalaman</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="level" value="pemula" checked> Pemula
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="level" value="menengah"> Menengah
+          </label>
+        </div>
+      </div>
+
+      <!-- Textarea: Alasan Bergabung -->
+      <div class="form-group">
+        <label for="alasan">Alasan Bergabung</label>
+        <textarea id="alasan" name="alasan" rows="3" placeholder="Ceritakan singkat motivasi kamu..."></textarea>
+      </div>
+
+      <!-- Tombol Submit -->
+      <button type="submit" class="btn-submit">Kirim Pendaftaran</button>
+
+    </form>
+  </div>
+
+</body>
+</html>

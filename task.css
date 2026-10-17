@@ -1,0 +1,218 @@
+/* ==========================================================================
+   LEMBAR KERJA PRAKTIKUM IT CLUB: STYLING FORM DENGAN CSS
+   Petunjuk: Tuliskan kode CSS yang tepat sesuai instruksi di setiap nomor!
+   ========================================================================== */
+
+
+/* =========================================
+   BAGIAN 1: CSS RESET & BOX SIZING
+   ========================================= */
+
+/* 1. Buat universal selector (tanda bintang) untuk memilih seluruh elemen HTML
+
+  /* 2. Atur box-sizing menjadi border-box agar ukuran elemen tidak melebar saat diberi padding */
+
+  /* 3. Hapus seluruh jarak luar (margin) bawaan browser menjadi 0 */
+
+  /* 4. Hapus seluruh ruang dalam (padding) bawaan browser menjadi 0 */
+
+/* 5. Tutup kurung kurawal untuk universal selector */
+
+
+
+
+/* =========================================
+   BAGIAN 2: MENGATUR LATAR & MENENGAHKAN FORM
+   ========================================= */
+
+/* 6. Buat element selector untuk mengatur bagian body
+
+  /* 7. Ubah jenis huruf  menjadi 'Segoe UI', dengan cadangan Tahoma, Geneva, Verdana, sans-serif */
+
+  /* 8. Beri warna latar belakang  abu-abu kebiruan lembut: #f0f4f8 */
+
+  /* 9. Ubah warna teks utama  menjadi abu-abu gelap: #333333 */
+
+  /* 10. Aktifkan mode Flexbox  agar posisi kartu form mudah diatur */
+
+  /* 11. Tengahkan kartu form secara horizontal/kiri-kanan (justify)  */
+
+  /* 12. Tengahkan kartu form secara vertikal/atas-bawah (align) */
+
+  /* 13. Atur tinggi minimal  sebesar 100vh agar memenuhi tinggi layar */
+
+  /* 14. Beri ruang dalam sebesar 20px agar kartu tidak menempel ke tepi layar */
+
+/*15. Tutup kurung kurawal untuk body
+
+
+
+/* =========================================
+   BAGIAN 3: DESAIN KARTU FORM (CARD) & JUDUL
+   ========================================= */
+
+/* 16. Buat class selector untuk .form-card
+
+  /* 17. Beri warna latar belakang putih bersih: #ffffff */
+
+  /* 18. Atur lebar  kartu menjadi 100% */
+
+  /* 19. Batasi lebar maksimal kartu sebesar 420px */
+
+  /* 20. Beri ruang dalam sebesar 30px */
+
+  /* 21. Buat keempat sudut kartu melengkung  sebesar 12px */
+
+  /* 22. Tambahkan efek bayangan (box) dengan nilai: 0 8px 20px rgba(0, 0, 0, 0.08) */
+
+/*23 Tutup kurung kurawal untuk .form-card
+
+
+/* 24. Buat selector untuk memilih elemen h2 yang berada di dalam .form-card
+
+  /* 25. Buat posisi teks judul menjadi rata tengah  */
+
+  /* 26. Beri warna teks biru tua gelap: #1e293b */
+
+  /* 27. Beri jarak luar bawah  sebesar 6px */
+
+/* 28. Tutup kurung kurawal untuk .form-card h2 */
+
+
+/* 29. Buat class selector untuk .subtitle
+
+  /* 30. Buat posisi teks subjudul menjadi rata tengah */
+
+  /* 31. Atur ukuran huruf  menjadi 14px */
+
+  /* 32. Beri warna teks abu-abu redup: #64748b */
+
+  /* 33. Beri jarak luar bawah sebesar 24px */
+
+/* 34. Tutup kurung kurawal untuk .subtitle */
+
+
+
+/* =========================================
+   BAGIAN 4: MENGATUR JARAK BARIS & LABEL
+   ========================================= */
+
+/* 35. Buat class selector untuk .form-group
+
+  /* 36. Beri jarak luar bawah sebesar 16px agar antar kolom input tidak menempel */
+
+
+
+
+/* 38. Buat element selector untuk label
+
+  /* 39. Ubah sifat tampilan/display  menjadi block agar label berada di baris tersendiri di atas input */
+
+  /* 40. Atur ukuran huruf menjadi 14px */
+
+  /* 41. Buat ketebalan huruf  sedikit tebal dengan nilai 600 */
+
+  /* 42. Beri jarak luar bawah sebesar 6px */
+
+  /* 43. Ubah warna teks label menjadi #334155 */
+
+
+
+
+
+/* =========================================
+   BAGIAN 5: STYLING KOLOM INPUT & EFEK FOCUS
+   ========================================= */
+
+/* 45. Buat group selector untuk memilih: input[type="text"], input[type="email"], select, dan textarea */
+
+  /* 46. Buat lebar  seluruh kolom input menjadi 100% */
+
+  /* 47. Beri ruang dalam atas-bawah 10px dan kiri-kanan 12px (tulis: 10px 12px) */
+
+  /* 48. Buat garis tepi  dengan ketebalan 1.5px, jenis garis solid, dan warna #cbd5e1 */
+
+  /* 49. Buat sudut kotak input melengkung  sebesar 8px */
+
+  /* 50. Atur ukuran huruf di dalam kotak input menjadi 14px */
+
+  /* 51. Atur font-family menjadi inherit agar mengikuti jenis huruf dari body */
+
+  /* 52. Tambahkan efek animasi transisi  dengan nilai: border-color 0.2s, box-shadow 0.2s */
+
+
+
+
+/* 54. Buat group selector yang sama seperti nomor 45, tetapi tambahkan :focus di akhir tiap elemen (contoh: select:focus) */
+
+  /* 55. Hilangkan garis hitam bawaan browser saat input diklik (atur outline menjadi none) */
+
+  /* 56. Ubah warna garis tepi  menjadi biru #2563eb saat kolom aktif diketik */
+
+  /* 57. Tambahkan efek cahaya/box shadow di luar garis  dengan nilai: 0 0 0 3px rgba(37, 99, 235, 0.15) */
+
+/* 58. Tutup kurung kurawal untuk selector :focus */
+
+
+
+/* =========================================
+   BAGIAN 6: RADIO BUTTON & TOMBOL SUBMIT
+   ========================================= */
+
+/* 59. Buat class selector untuk .radio-group
+
+  /* 60. Gunakan display flex agar pilihan radio berjejer ke samping */
+
+  /* 61. Beri jarak antar pilihan  sebesar 20px */
+
+  /* 62. Beri jarak luar atas  sebesar 8px */
+
+/* 63. Tutup kurung kurawal untuk .radio-group */
+
+
+/* 64. Buat class selector untuk .radio-label
+
+  /* 65. Kembalikan ketebalan huruf  menjadi normal */
+
+  /* 66. Gunakan display flex agar bulatan radio dan teks mudah disejajarkan */
+
+  /* 67. Sejajarkan bulatan radio dan teks secara vertikal di tengah  */
+
+  /* 68. Beri jarak sebesar 6px antara bulatan radio dan teks */
+
+  /* 69. Ubah bentuk kursor mouse  menjadi pointer */
+
+
+
+
+/* 71. Buat class selector untuk tombol .btn-submit
+
+  /* 72. Atur lebar tombol menjadi 100% */
+
+  /* 73. Beri ruang dalam  sebesar 12px */
+
+  /* 74. Beri warna latar belakang biru utama: #2563eb */
+
+  /* 75. Beri warna teks putih: #ffffff */
+
+  /* 76. Hilangkan garis tepi bawaan tombol  */
+
+  /* 77. Buat sudut tombol melengkung  sebesar 8px */
+
+  /* 78. Atur ukuran huruf menjadi 15px */
+
+  /* 79. Atur ketebalan huruf  menjadi 600 */
+
+  /* 80. Ubah bentuk kursor mouse menjadi pointer saat menyentuh tombol */
+
+  /* 81. Beri jarak luar atas sebesar 8px */
+
+  /* 82. Tambahkan efek transisi untuk perubahan background-color selama 0.2s */
+
+
+
+
+/* 84. Buat selector .btn-submit dengan tambahan pseudo-class :hover
+
+  /* 85. Ubah warna latar belakang  tombol menjadi biru yang lebih gelap: #1d4ed8 */
+
