@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulator CSS IT Club</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 20px; background: #f8fafc; color: #334155;
+      display: flex; gap: 30px;
+    }
+    
+    /* Panel Kontrol */
+    .controls {
+      width: 300px; background: white; padding: 20px;
+      border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .controls h2 { margin-top: 0; color: #1e293b; font-size: 1.2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+    .control-group { margin-bottom: 15px; }
+    label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    select, input[type="range"] { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; }
+    
+    /* Tampilan Kode CSS */
+    .css-output {
+      background: #1e293b; color: #38bdf8; padding: 15px;
+      border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 13px;
+    }
+    
+    /* Area Layar Utama */
+    .playground {
+      flex: 1; display: flex; flex-direction: column;
+    }
+    
+    /* Container yang Dimanipulasi */
+    #container {
+      background: #e2e8f0;
+      border: 3px dashed #94a3b8;
+      min-height: 400px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      /* Default styles, ditimpa oleh JS nanti */
+      display: flex; flex-direction: row; justify-content: center; align-items: center;
+    }
+    
+    /* Kotak Anak */
+    .box {
+      background: #3b82f6;
+      border: 2px solid #1d4ed8;
+      color: white; font-weight: bold; font-size: 1.2rem;
+      text-align: center; border-radius: 8px;
+      transition: all 0.3s ease;
+      /* Box Sizing penting agar padding membesarkan perut ke dalam, bukan hanya teksnya */
+      box-sizing: content-box; 
+    }
+    
+    /* Visualisasi Margin (Area Merah Muda) */
+    .box-wrapper {
+      background-color: rgba(239, 68, 68, 0.2); /* Merah transparan untuk margin */
+      border: 1px dotted red;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PANEL KONTROL -->
+  <div class="controls">
+    <h2>Kontrol CSS</h2>
+    
+    <div class="control-group">
+      <label>Display Induk (Container)</label>
+      <select id="ctrl-display">
+        <option value="flex" selected>flex</option>
+        <option value="block">block</option>
+        <option value="inline-block">inline-block</option>
+      </select>
+    </div>
+
+    <!-- Hanya aktif kalau display: flex -->
+    <div id="flex-controls">
+      <div class="control-group">
+        <label>Flex Direction</label>
+        <select id="ctrl-direction">
+          <option value="row" selected>row</option>
+          <option value="column">column</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Justify Content (Sumbu Utama)</label>
+        <select id="ctrl-justify">
+          <option value="center" selected>center</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+          <option value="space-evenly">space-evenly</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Align Items (Sumbu Silang)</label>
+        <select id="ctrl-align">
+          <option value="center" selected>center</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+    <div class="control-group">
+      <label>Padding (Ruang Dalam Kotak Biru): <span id="val-padding">20</span>px</label>
+      <input type="range" id="ctrl-padding" min="0" max="80" value="20">
+    </div>
+    
+    <div class="control-group">
+      <label>Margin (Jarak Luar Area Merah): <span id="val-margin">15</span>px</label>
+      <input type="range" id="ctrl-margin" min="0" max="80" value="15">
+    </div>
+
+    <div class="css-output" id="code-output"></div>
+  </div>
+
+  <!-- AREA SIMULASI -->
+  <div class="playground">
+    <div id="container">
+      <div class="box-wrapper"><div class="box">Box 1</div></div>
+      <div class="box-wrapper"><div class="box">Box 2</div></div>
+      <div class="box-wrapper"><div class="box">Box 3</div></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT INTERAKTIF -->
+  <script>
+    // Ambil elemen dari HTML
+    const container = document.getElementById('container');
+    const boxes = document.querySelectorAll('.box');
+    const boxWrappers = document.querySelectorAll('.box-wrapper');
+    const codeOutput = document.getElementById('code-output');
+    
+    // Ambil input kontrol
+    const ctrlDisplay = document.getElementById('ctrl-display');
+    const flexControls = document.getElementById('flex-controls');
+    const ctrlDirection = document.getElementById('ctrl-direction');
+    const ctrlJustify = document.getElementById('ctrl-justify');
+    const ctrlAlign = document.getElementById('ctrl-align');
+    const ctrlPadding = document.getElementById('ctrl-padding');
+    const ctrlMargin = document.getElementById('ctrl-margin');
+    
+    const valPadding = document.getElementById('val-padding');
+    const valMargin = document.getElementById('val-margin');
+
+    // Fungsi untuk memperbarui tampilan
+    function updateLayout() {
+      const display = ctrlDisplay.value;
+      const direction = ctrlDirection.value;
+      const justify = ctrlJustify.value;
+      const align = ctrlAlign.value;
+      const padding = ctrlPadding.value;
+      const margin = ctrlMargin.value;
+
+      // 1. Terapkan Style ke Container Induk
+      container.style.display = display;
+      
+      if(display === 'flex') {
+        flexControls.style.display = 'block';
+        container.style.flexDirection = direction;
+        container.style.justifyContent = justify;
+        container.style.alignItems = align;
+      } else {
+        flexControls.style.display = 'none'; // Sembunyikan kontrol flex jika bukan flex
+        container.style.flexDirection = '';
+        container.style.justifyContent = '';
+        container.style.alignItems = '';
+      }
+
+      // 2. Terapkan Style ke Box (Padding & Margin)
+      // Margin diterapkan di wrapper agar terlihat area merah transparan (untuk edukasi)
+      // Padding diterapkan di kotak biru
+      boxWrappers.forEach(wrapper => wrapper.style.padding = margin + 'px');
+      boxes.forEach(box => {
+        box.style.padding = padding + 'px';
+        box.style.display = display === 'flex' ? 'block' : display === 'inline-block' ? 'inline-block' : 'block';
+      });
+      
+      // Update Text Nilai
+      valPadding.innerText = padding;
+      valMargin.innerText = margin;
+
+      // 3. Tulis Kode CSS ke Layar
+      let cssText = `.container {\n  display: ${display};\n`;
+      if(display === 'flex') {
+        cssText += `  flex-direction: ${direction};\n`;
+        cssText += `  justify-content: ${justify};\n`;
+        cssText += `  align-items: ${align};\n`;
+      }
+      cssText += `}\n\n.box {\n  padding: ${padding}px;\n  margin: ${margin}px;\n}`;
+      codeOutput.innerText = cssText;
+    }
+
+    // Pasang Event Listener (Setiap digeser/diklik, panggil updateLayout)
+    ctrlDisplay.addEventListener('change', updateLayout);
+    ctrlDirection.addEventListener('change', updateLayout);
+    ctrlJustify.addEventListener('change', updateLayout);
+    ctrlAlign.addEventListener('change', updateLayout);
+    ctrlPadding.addEventListener('input', updateLayout);
+    ctrlMargin.addEventListener('input', updateLayout);
+
+    // Jalankan sekali saat pertama dibuka
+    updateLayout();
+  </script>
+
+</body>
+</html>
